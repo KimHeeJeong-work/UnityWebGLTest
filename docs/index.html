@@ -3,32 +3,113 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Unity WebGL Demo (Embed)</title>
+  <title>GOVR | Unity WebGL Demo (iFrame Embed)</title>
+  <meta name="description" content="Unity WebGL 데모를 iFrame으로 임베드한 실제같은 랜딩 페이지 예시" />
+  <link rel="icon" href="data:,">
   <style>
-    :root{--bg:#0b1020;--tx:#e5e7eb;--mut:#94a3b8;}
+    :root { --govr-bg: #0b1020; --govr-card: #12182a; --govr-accent: #5eead4; --govr-text: #e5e7eb; --govr-muted:#94a3b8;}
+    /* Base */
     html,body{height:100%}
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif; margin:0; background:linear-gradient(180deg,#0b1020 0%, #0e172d 100%); color:var(--tx); }
-    header { position:sticky; top:0; padding:14px 20px; background:#0b1020; color:#e5e7eb; border-bottom:1px solid rgba(255,255,255,.06); }
-    main { max-width:1100px; margin:24px auto; padding:0 16px; }
-    .frame-wrap { position:relative; width:100%; aspect-ratio:16/9; border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.35); background:#231f20; }
+    body{margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Apple SD Gothic Neo, "맑은 고딕", sans-serif;
+         color:var(--govr-text); background: linear-gradient(180deg,#0b1020 0%, #0b1020 60%, #0e172d 100%);}
+    a{color:inherit}
+    .govr-container { max-width: 1120px; margin: 0 auto; padding: 16px 20px; }
+    /* Sticky header */
+    .govr-header { position: sticky; top:0; z-index:1000; backdrop-filter:saturate(1.2) blur(6px); background:rgba(11,16,32,.65); border-bottom:1px solid rgba(255,255,255,.06); }
+    .govr-nav { display:flex; align-items:center; justify-content:space-between; }
+    .govr-brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px; }
+    .govr-dot { width:10px; height:10px; border-radius:50%; background:var(--govr-accent); box-shadow:0 0 18px var(--govr-accent); }
+    .govr-links a { margin-left:20px; text-decoration:none; color:var(--govr-text); opacity:.88; }
+    .govr-links a:hover { opacity:1; }
+    /* Hero */
+    .govr-hero { text-align:center; padding:64px 20px; }
+    .govr-hero h1 { font-size: clamp(28px, 4vw, 44px); margin:0 0 12px; letter-spacing:.2px; }
+    .govr-hero p { color:var(--govr-muted); margin:0 0 24px; }
+    .govr-cta { display:inline-block; padding:12px 18px; border-radius:12px; background:var(--govr-accent); color:#0b1020; font-weight:700; text-decoration:none; }
+    .govr-cta:hover { filter: brightness(0.95); }
+    /* Features */
+    .govr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:0 20px 24px; }
+    @media (max-width:900px){ .govr-grid{ grid-template-columns:1fr 1fr;} }
+    @media (max-width:600px){ .govr-grid{ grid-template-columns:1fr;} }
+    .govr-card { background:var(--govr-card); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:18px; }
+    .govr-card h3{ margin:0 0 6px; font-size:18px; }
+    .govr-card p{ margin:0; color:var(--govr-muted); }
+    /* iFrame demo section */
+    #unity-container { margin: 24px auto; }
+    .frame-wrap { position:relative; width:100%; aspect-ratio:16/9; border-radius:16px; overflow:hidden;
+                  box-shadow: 0 12px 40px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.04); background:#231f20; }
     .frame-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
-    .note { color:var(--mut); font-size:14px; margin-top:8px; }
-    a.btn{ display:inline-block; padding:10px 14px; border-radius:10px; background:#5eead4; color:#0b1020; text-decoration:none; font-weight:700; }
+    .frame-caption { color:var(--govr-muted); font-size:14px; margin-top:10px; text-align:right; }
+    /* Footer */
+    .govr-footer { color:var(--govr-muted); font-size:13px; text-align:center; padding:24px 20px 40px; }
   </style>
 </head>
 <body>
-  <header>Unity WebGL Demo — Embedded via iFrame</header>
-  <main>
-    <h1 style="margin:0 0 12px">웹 페이지 내부에 Unity WebGL 임베드</h1>
-    <p class="note">아래 iFrame은 <code>docs/webgl/index.html</code>을 가리킵니다. <br>Unity 빌드 전체를 <code>docs/webgl/</code>에 복사하세요.</p>
-    <div class="frame-wrap">
-      <iframe 
-        src="webgl/index.html" 
-        allow="fullscreen; gamepad *; xr-spatial-tracking"
-        loading="lazy">
-      </iframe>
-    </div>
-    <p class="note">경로 예시(프로젝트 페이지): <code>https://&lt;USERNAME&gt;.github.io/&lt;REPO&gt;/</code> → iFrame 내부는 <code>/&lt;REPO&gt;/webgl/index.html</code></p>
+  <header class="govr-header">
+     <div class="govr-container govr-nav">
+        <div class="govr-brand"><span class="govr-dot"></span>GOVR Studio</div>
+        <nav class="govr-links">
+           <a href="#features">Features</a>
+           <a href="#unity-container">Demo</a>
+           <a href="#contact">Contact</a>
+        </nav>
+     </div>
+  </header>
+
+  <main class="govr-container">
+     <section class="govr-hero">
+        <h1>XR Web Demo (iFrame Embed)</h1>
+        <p>Unity WebGL 페이지(<code>webgl/index.html</code>)를 iFrame으로 임베드한 예시입니다.</p>
+        <a class="govr-cta" href="#unity-container">Launch Demo ↓</a>
+     </section>
+
+     <section id="features" class="govr-grid" aria-label="Feature Highlights">
+        <article class="govr-card">
+          <h3>그럴싸한 문구</h3>
+          <p>WebGL Demo</p>
+        </article>
+        <article class="govr-card">
+          <h3>그럴싸한 문구</h3>
+          <p>WebGL Demo</p>
+        </article>
+        <article class="govr-card">
+          <h3>그럴싸한 문구</h3>
+          <p>WebGL Demo</p>
+        </article>
+     </section>
+
+     <section id="unity-container" aria-label="Unity WebGL Demo">
+        <div class="frame-wrap">
+          <iframe 
+            src="webgl/index.html"
+            allow="fullscreen; gamepad *; xr-spatial-tracking"
+            loading="lazy">
+          </iframe>
+        </div>
+        <div class="frame-caption">
+          문제가 있나요? <a href="webgl/index.html" target="_blank" rel="noopener">새 탭으로 열기</a>
+        </div>
+     </section>
   </main>
+
+  <div class="govr-container govr-footer" id="contact">
+    © 2025 GOVR — Demo-only fake site shell (iFrame version).
+  </div>
+
+  <script>
+    // Smooth scrolling for internal anchors
+    document.querySelectorAll('.govr-links a, .govr-cta').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const href=a.getAttribute('href');
+        if(href && href.startsWith('#')){
+          const el=document.querySelector(href);
+          if(el){
+            e.preventDefault();
+            el.scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
