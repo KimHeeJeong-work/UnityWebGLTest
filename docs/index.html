@@ -5,19 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Unity WebGL Demo (Embed)</title>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif; margin:0; }
-    header { position:sticky; top:0; padding:14px 20px; background:#0b1020; color:#e5e7eb; }
+    :root{--bg:#0b1020;--tx:#e5e7eb;--mut:#94a3b8;}
+    html,body{height:100%}
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif; margin:0; background:linear-gradient(180deg,#0b1020 0%, #0e172d 100%); color:var(--tx); }
+    header { position:sticky; top:0; padding:14px 20px; background:#0b1020; color:#e5e7eb; border-bottom:1px solid rgba(255,255,255,.06); }
     main { max-width:1100px; margin:24px auto; padding:0 16px; }
-    .frame-wrap { position:relative; width:100%; aspect-ratio:16/9; border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.35); }
+    .frame-wrap { position:relative; width:100%; aspect-ratio:16/9; border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.35); background:#231f20; }
     .frame-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
-    .note { color:#64748b; font-size:14px; margin-top:8px; }
+    .note { color:var(--mut); font-size:14px; margin-top:8px; }
+    a.btn{ display:inline-block; padding:10px 14px; border-radius:10px; background:#5eead4; color:#0b1020; text-decoration:none; font-weight:700; }
   </style>
 </head>
 <body>
   <header>Unity WebGL Demo — Embedded via iFrame</header>
   <main>
     <h1 style="margin:0 0 12px">웹 페이지 내부에 Unity WebGL 임베드</h1>
-    <p class="note">아래 iFrame은 <code>docs/webgl/index.html</code>을 가리킵니다.</p>
+    <p class="note">아래 iFrame은 <code>docs/webgl/index.html</code>을 가리킵니다. <br>Unity 빌드 전체를 <code>docs/webgl/</code>에 복사하세요.</p>
     <div class="frame-wrap">
       <iframe 
         src="webgl/index.html" 
@@ -25,6 +28,7 @@
         loading="lazy">
       </iframe>
     </div>
+    <p class="note">경로 예시(프로젝트 페이지): <code>https://&lt;USERNAME&gt;.github.io/&lt;REPO&gt;/</code> → iFrame 내부는 <code>/&lt;REPO&gt;/webgl/index.html</code></p>
   </main>
 </body>
 </html>
