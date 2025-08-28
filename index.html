@@ -8,6 +8,106 @@
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
+<!-- ======= FAKE SITE SHELL (GOVR) – START ======= -->
+<div id="govr-site" class="govr-site">
+  <style>
+    :root { --govr-bg: #0b1020; --govr-card: #12182a; --govr-accent: #5eead4; --govr-text: #e5e7eb; --govr-muted:#94a3b8;}
+    /* Site base */
+    .govr-site { 
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Apple SD Gothic Neo, "맑은 고딕", sans-serif; 
+      color: var(--govr-text); 
+      background: linear-gradient(180deg,#0b1020 0%, #0b1020 60%, #0e172d 100%);
+      padding-bottom: 32px;
+    }
+    .govr-container { max-width: 1120px; margin: 0 auto; padding: 16px 20px; }
+    /* Sticky header */
+    .govr-header { position: sticky; top:0; z-index:1000; backdrop-filter:saturate(1.2) blur(6px); background:rgba(11,16,32,.65); border-bottom:1px solid rgba(255,255,255,.06); }
+    .govr-nav { display:flex; align-items:center; justify-content:space-between; }
+    .govr-brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px; }
+    .govr-dot { width:10px; height:10px; border-radius:50%; background:var(--govr-accent); box-shadow:0 0 18px var(--govr-accent); }
+    .govr-links a { margin-left:20px; text-decoration:none; color:var(--govr-text); opacity:.88; }
+    .govr-links a:hover { opacity:1; }
+    /* Hero */
+    .govr-hero { text-align:center; padding:64px 20px; }
+    .govr-hero h1 { font-size: clamp(28px, 4vw, 44px); margin:0 0 12px; letter-spacing:.2px; }
+    .govr-hero p { color:var(--govr-muted); margin:0 0 24px; }
+    .govr-cta { display:inline-block; padding:12px 18px; border-radius:12px; background:var(--govr-accent); color:#0b1020; font-weight:700; text-decoration:none; }
+    .govr-cta:hover { filter: brightness(0.95); }
+    /* Features */
+    .govr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:0 20px 24px; }
+    @media (max-width:900px){ .govr-grid{ grid-template-columns:1fr 1fr;} }
+    @media (max-width:600px){ .govr-grid{ grid-template-columns:1fr;} }
+    .govr-card { background:var(--govr-card); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:18px; }
+    .govr-card h3{ margin:0 0 6px; font-size:18px; }
+    .govr-card p{ margin:0; color:var(--govr-muted); }
+    .govr-footer { color:var(--govr-muted); font-size:13px; text-align:center; padding-top:24px; }
+
+    /* Make the Unity section look integrated without altering its behavior */
+    #unity-container { 
+      margin: 24px auto; 
+      border-radius: 16px; 
+      overflow: hidden; 
+      box-shadow: 0 12px 40px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.04);
+    }
+    #unity-footer { max-width:1120px; margin: 8px auto; }
+  </style>
+
+  <header class="govr-header">
+     <div class="govr-container govr-nav">
+        <div class="govr-brand"><span class="govr-dot"></span>GOVR Studio</div>
+        <nav class="govr-links">
+           <a href="#features">Features</a>
+           <a href="#unity-container">Demo</a>
+           <a href="#contact">Contact</a>
+        </nav>
+     </div>
+  </header>
+
+  <main class="govr-container">
+     <section class="govr-hero">
+        <h1>WebGL Web Demo</h1>
+        <p>Unity WebGL 데모를 감싸는 실제 같은 랜딩 페이지 예시입니다.</p>
+        <a class="govr-cta" href="#unity-container">Launch Demo ↓</a>
+     </section>
+
+     <section id="features" class="govr-grid" aria-label="Feature Highlights">
+        <article class="govr-card">
+          <h3>그럴싸한 문구</h3>
+          <p>WebGL</p>
+        </article>
+        <article class="govr-card">
+          <h3>그럴싸한 문구</h3>
+          <p>Unity</p>
+        </article>
+        <article class="govr-card">
+          <h3>그럴싸한 문구</h3>
+          <p>Demo</p>
+        </article>
+     </section>
+  </main>
+
+  <div class="govr-container govr-footer" id="contact">
+    © 2025 GOVR — Demo-only fake site shell.
+  </div>
+</div>
+
+<script>
+  // Smooth scrolling for internal anchors
+  document.querySelectorAll('.govr-links a, .govr-cta').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const href=a.getAttribute('href');
+      if(href && href.startsWith('#')){
+        const el=document.querySelector(href);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      }
+    });
+  });
+</script>
+<!-- ======= FAKE SITE SHELL – END ======= -->
+
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
